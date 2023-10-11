@@ -1,0 +1,29 @@
+server:
+  port: 8181
+spring:
+  application:
+    name: mab-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: mab-user-registry
+          uri: lb://mab-user-registry
+          predicates:
+            - Path=/mab-user-registry/**
+          filters:
+            - RewritePath=/mab-user-registry/(?<path>.*), /$\{path}
+        - id: mab-request
+          uri: lb://mab-request
+          predicates:
+            - Path=/mab-request/**
+          filters:
+            - RewritePath=/mab-request/(?<path>.*), /$\{path}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: gateway
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
