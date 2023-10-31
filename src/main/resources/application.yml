@@ -19,6 +19,12 @@ spring:
             - Path=/mab-request/**
           filters:
             - RewritePath=/mab-request/(?<path>.*), /$\{path}
+        - id: mab-file-uploader
+          uri: lb://mab-file-uploader
+          predicates:
+            - Path=/mab-file-uploader/**
+          filters:
+            - RewritePath=/mab-file-uploader/(?<path>.*), /$\{path}
 
 management:
   endpoints:
