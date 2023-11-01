@@ -14,8 +14,6 @@ spring:
             - RewritePath=/mab-user-registry/(?<path>.*), /$\{path}
         - id: mab-request
           uri: lb://mab-request
-
-
           predicates:
             - Path=/mab-request/**
           filters:
@@ -26,6 +24,12 @@ spring:
             - Path=/mab-file-uploader/**
           filters:
             - RewritePath=/mab-file-uploader/(?<path>.*), /$\{path}
+        - id: mab-cycle
+          uri: lb://mab-cycle
+          predicates:
+            - Path=/mab-cycle/**
+          filters:
+            - RewritePath=/mab-cycle/(?<path>.*), /$\{path}
 management:
   endpoints:
     web:
