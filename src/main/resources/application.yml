@@ -5,6 +5,7 @@ spring:
     name: mab-gateway
   cloud:
     gateway:
+
       routes:
         - id: mab-user-registry
           uri: lb://mab-user-registry
@@ -24,12 +25,6 @@ spring:
             - Path=/mab-file-uploader/**
           filters:
             - RewritePath=/mab-file-uploader/(?<path>.*), /$\{path}
-        - id: mab-cycle
-          uri: lb://mab-cycle
-          predicates:
-            - Path=/mab-cycle/**
-          filters:
-            - RewritePath=/mab-cycle/(?<path>.*), /$\{path}
 management:
   endpoints:
     web:
