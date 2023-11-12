@@ -25,6 +25,12 @@ spring:
             - Path=/mab-file-uploader/**
           filters:
             - RewritePath=/mab-file-uploader/(?<path>.*), /$\{path}
+        - id: mab-schedule
+          uri: lb://mab-schedule
+          predicates:
+            - Path=/mab-schedule/**
+          filters:
+            - RewritePath=/mab-schedule/(?<path>.*), /$\{path}
 management:
   endpoints:
     web:
